@@ -34,7 +34,7 @@ labels = ["Addison's Disease", 'Arrhythmias (Irregular Heartbeat)', 'Asthma', 'A
           'Hyperthyroidism (Overactive Thyroid)', 'Hypothyroidism (Underactive Thyroid)', 'Influenza (Flu)',
           'Interstitial Lung Disease', 'Leukemia', 'Lung Cancer', 'Malaria', 'Prostate Cancer',
           'Pulmonary Disease (COPD)', 'Skin Cancer (Melanoma)', 'Stroke', 'Tuberculosis (TB)', 'about',
-          'creation', 'death', 'goodbye', 'greeting', 'happy', 'help', 'no-response', 'sad', 'scared', 'skill', 'swear',
+          'creation', 'death', 'goodbye', 'greeting', 'happy', 'help', 'incomplete', 'no-response', 'sad', 'scared', 'skill', 'swear',
           'thanks', 'understand']
 
 responses = {'greeting': ['Hello there. Tell me how are you feeling today?',
@@ -61,6 +61,7 @@ responses = {'greeting': ['Hello there. Tell me how are you feeling today?',
                         'I am here to help',
                         'Thank you for being here',
                         'No worries'],
+             'incomplete':["Few symptoms not enough for diagnosis process, Please describe all the symptoms you feel to help you make an accurate diagnosis"],
              'no-response': ["Sorry, I didn't understand you!",
                              'Not sure I understand that!',
                              "Please don't hesitate to talk to me!",
@@ -859,7 +860,7 @@ with open('bot_tokenizer.pickle', 'rb') as handle:
     t = pickle.load(handle)
 
 def preprocess(x='hello'):
-    x = x.replace(',', '').replace('.', '').replace("\'", '').replace("!", '')
+    x = x.replace(',', '').replace('.', '').replace("\"", '').replace("!", '').replace("-", '')
     s = ""
     words = nltk.word_tokenize(x)
     words = [stemmer.stem(w.lower()) for w in words if w != '?']
