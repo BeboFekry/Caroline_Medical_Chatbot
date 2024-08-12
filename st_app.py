@@ -7,7 +7,7 @@ print(tensorflow.__version__)
 from tensorflow.keras.models import load_model
 import pickle
 import nltk
-nltk.download('punkt')
+#nltk.download('punkt')
 import random
 from nltk.stem.lancaster import LancasterStemmer
 import time
